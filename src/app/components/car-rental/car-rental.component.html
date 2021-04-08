@@ -1,0 +1,91 @@
+
+<div  class="row gy-3">
+  <form [formGroup]="rentPayment" action="">
+    <div class="row gy-3">
+      
+      <div class="col-md-6">
+        <label for="cc-name" class="form-label">Starting Date</label>
+        <input type="date" class="form-control" id="cc-name" placeholder="" 
+            formControlName="rentDate" [value]="2021-08-04" required>
+        <small class="text-muted">Full name as displayed on card</small>
+        <div class="invalid-feedback">
+            Name on card is required
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <label for="cc-number" class="form-label">Due Date</label>
+        <input type="date" class="form-control" id="cc-number"
+            formControlName="returnDate"placeholder=""  required>
+        <div class="invalid-feedback">
+            Credit card number is required
+        </div>
+    </div>  
+      <div class="col-md-6">
+            <label for="cc-name" class="form-label">Name on card</label>
+            <input type="text" class="form-control" id="cc-name" placeholder="" required >
+            <small class="text-muted">Full name as displayed on card</small>
+            <div class="invalid-feedback">
+                Name on card is required
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="cc-number" class="form-label">Credit card number</label>
+            <input formControlName="creditCard" type="text" class="form-control" id="cc-number"
+                placeholder=""  required>
+            <div class="invalid-feedback">
+                Credit card number is required
+            </div>
+        </div>
+     
+        <div class="col-md-3">
+            <label for="cc-expiration" class="form-label">Expiration</label>
+            <input type="date" class="form-control" id="cc-expiration" placeholder="" required>
+            <div class="invalid-feedback">
+                Expiration date required
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="cc-cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+            <div class="invalid-feedback">
+                Security code required
+            </div>
+        </div>
+
+        <div class="col col-3">
+          <hr class="my-3">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button  (click)="getMemberInfo()" type="w-100 btn btn-primary btn-lg" class="btn btn-primary"> Pay with this cart </button>
+          </div>
+        </div>
+        <div class="col col-3">
+          <h5 class="mb-3">Payment</h5>
+          <div class="form-check">
+            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+            <label class="form-check-label" for="credit">Credit card</label>
+          </div>
+          <div class="form-check">
+            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+            <label class="form-check-label" for="debit">Debit card</label>
+          </div>
+          <div class="form-check">
+            <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+            <label class="form-check-label" for="paypal">PayPal</label>
+          </div>
+        </div>
+      
+       
+    </div>
+ 
+  </form>
+
+
+</div>
+
+
+
+
+
