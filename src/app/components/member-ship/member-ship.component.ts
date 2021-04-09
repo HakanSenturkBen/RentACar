@@ -29,7 +29,7 @@ export class MemberShipComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.puan);
+    
     this.elemetsOfModal()
     this.elementsOfMember()
     this.login()

@@ -17,6 +17,7 @@ export class PaymentService {
 
 
   add(payment:PaymentModel):Observable<ResponseModel>{
+    
     return this.httpClient.post<ResponseModel>(this.apiUrl+"Add",payment)
 
  }

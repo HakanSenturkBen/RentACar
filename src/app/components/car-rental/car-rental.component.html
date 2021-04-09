@@ -1,12 +1,13 @@
 
-<div  class="row gy-3">
-  <form [formGroup]="rentPayment" action="">
+<div class="row gy-3">
+  <Form  action="" [formGroup]="rentPayment">
+    <h5 *ngIf="transactionAmount">total : {{transactionAmount |currency:"₺"}}</h5>
     <div class="row gy-3">
-      
       <div class="col-md-6">
         <label for="cc-name" class="form-label">Starting Date</label>
-        <input type="date" class="form-control" id="cc-name" placeholder="" 
-            formControlName="rentDate" [value]="2021-08-04" required>
+        <input type="date"  class="form-control" id="cc-name" 
+            placeholder="xx.xx.xx" 
+            formControlName="rentDate"  required>
         <small class="text-muted">Full name as displayed on card</small>
         <div class="invalid-feedback">
             Name on card is required
@@ -15,21 +16,22 @@
 
     <div class="col-md-6">
         <label for="cc-number" class="form-label">Due Date</label>
-        <input type="date" class="form-control" id="cc-number"
-            formControlName="returnDate"placeholder=""  required>
+        <input formControlName="returnDate" type="date" class="form-control" id="cc-number"
+            placeholder=""  required>
         <div class="invalid-feedback">
             Credit card number is required
         </div>
     </div>  
+  
       <div class="col-md-6">
             <label for="cc-name" class="form-label">Name on card</label>
-            <input type="text" class="form-control" id="cc-name" placeholder="" required >
+            <input type="text"  class="form-control" id="cc-name" placeholder="" required>
             <small class="text-muted">Full name as displayed on card</small>
             <div class="invalid-feedback">
                 Name on card is required
             </div>
         </div>
-
+      
         <div class="col-md-6">
             <label for="cc-number" class="form-label">Credit card number</label>
             <input formControlName="creditCard" type="text" class="form-control" id="cc-number"
@@ -38,7 +40,7 @@
                 Credit card number is required
             </div>
         </div>
-     
+
         <div class="col-md-3">
             <label for="cc-expiration" class="form-label">Expiration</label>
             <input type="date" class="form-control" id="cc-expiration" placeholder="" required>
@@ -55,10 +57,16 @@
             </div>
         </div>
 
-        <div class="col col-3">
+        <div *ngIf="paying==false" class="col col-3">
           <hr class="my-3">
           <div class="btn-group" role="group" aria-label="Basic example">
-            <button  (click)="getMemberInfo()" type="w-100 btn btn-primary btn-lg" class="btn btn-primary"> Pay with this cart </button>
+            <button  (click)="nextStep()" type="w-100 btn btn-primary btn-lg" class="btn btn-primary"> NEXT STEP </button>
+          </div>
+        </div>
+        <div *ngIf="paying==true" class="col col-3">
+          <hr class="my-3">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button  (click)="PayAndExit()" type="w-100 btn btn-primary btn-lg" class="btn btn-primary"> Pay and Finished </button>
           </div>
         </div>
         <div class="col col-3">
@@ -76,13 +84,9 @@
             <label class="form-check-label" for="paypal">PayPal</label>
           </div>
         </div>
-      
-       
+        
     </div>
- 
-  </form>
-
-
+  </Form>
 </div>
 
 

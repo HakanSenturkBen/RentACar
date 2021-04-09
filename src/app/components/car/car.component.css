@@ -29,6 +29,7 @@
   }
   .hover-overlay-container:hover .overlay-image {
   opacity: 0.6;
+  transform: scale(1.05);
   }
   .hover-overlay-container:hover .overlay-btn-container {
   opacity: 1;
@@ -38,7 +39,7 @@
   width: 100%;
   height: auto;
   opacity: 1;
-  transition: .5s ease;
+  transition: all .5s ease;
   backface-visibility: hidden;
   }
   .hover-overlay-container .overlay-btn-container {
