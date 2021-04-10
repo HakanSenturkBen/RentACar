@@ -8,10 +8,23 @@ import { RouterLink } from '@angular/router';
 })
 export class NaviComponent implements OnInit {
 
-  tespit:string;
+  tespit:boolean=false;
   constructor() { }
 
   ngOnInit(): void {
+
+
+    if(localStorage.getItem("token")===null){
+      
+    }else{
+      this.tespit=true;
+    }
+
+  }
+
+  logout(){
+    localStorage.removeItem("token")
+    this.tespit=false;
   }
 
   

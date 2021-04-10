@@ -6,6 +6,8 @@ import { ListResponseModel } from '../models/listResponseModel';
 import { Car } from '../models/car';
 import { CarAdd } from '../models/carAdd';
 import { CarInfoDetail } from '../models/carInfoDetail';
+import { ResponseModel } from '../models/responseModel';
+import { Findeks } from '../models/findeksModel';
 
 
 @Injectable({
@@ -32,10 +34,8 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
   add(carAdd:CarAdd):Observable<ListResponseModel<CarAdd>>{
-    let params = JSON.stringify(carAdd);
-    let headers = new HttpHeaders().set('Content-Type','application/json');
-
-    return this.httpClient.post<ListResponseModel<CarAdd>>(this.apiUrl+"Cars/add",params, {headers:headers});
+    
+    return this.httpClient.post<ListResponseModel<CarAdd>>(this.apiUrl+"Cars/add",carAdd);
   }
 
 
@@ -46,9 +46,15 @@ export class CarService {
   }
 
   updateInfoCar(car:CarInfoDetail):Observable<ListResponseModel<CarInfoDetail>>{
-    let params=JSON.stringify(car);
-    let headers= new HttpHeaders().set('Content-Type','application/json');
-    return this.httpClient.post<ListResponseModel<CarInfoDetail>>(this.apiUrl+"CarInfos/Update",params, {headers:headers});
+    
+    return this.httpClient.post<ListResponseModel<CarInfoDetail>>(this.apiUrl+"CarInfos/Update",car);
   }
+
+  saveCarInfo(car:CarInfoDetail):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"carInfos/add",car)
+
+  }
+
+  
 
 }

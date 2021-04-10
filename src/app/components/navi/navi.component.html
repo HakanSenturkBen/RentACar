@@ -5,20 +5,32 @@
 
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-1 mb-lg-0">
-        
+      <ul class="navbar-nav me-auto mb-0 mb-lg-10">
         <li class="nav-item">
-          <small routerLink="" class="nav-link" >Home</small>
+          <small routerLink="" class="nav-link active" >Home</small>
         </li>
-        <li class="nav-item">
-          <small routerLink="datamanager" class="nav-link active" aria-current="page">DataManager</small>
+        <li *ngIf="tespit==true" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" name="navbarDropdown" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+            aria-expanded="true">
+            Admin Menu
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+           
+            <li><small routerLink="datamanager" class="nav-link active" aria-current="page">DataManager</small></li>
+            <li> <small routerLink="cars/add" class="nav-link active">carAdd</small></li>
+            <li> <small routerLink="colors/add" class="nav-link active">ColorAdd</small></li>
+            <li> <small routerLink="brands/add" class="nav-link active">BrandAdd</small></li>
+            <li> <small routerLink="users" class="nav-link active">AddUser</small></li>
+            <li><hr class="dropdown-divider"></li>
+            <li> <small routerLink="login" class="nav-link">Login</small></li>
+            <li><hr class="dropdown-divider"></li>
+            <li (click)="logout()"> <small routerLink="" class="nav-link">Logout</small></li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <small href="cars/add" class="nav-link">carAdd</small>
+        <li>
+          <small routerLink="login" class="nav-link active">Login</small>
         </li>
-        <li class="nav-item">
-          <small routerLink="login" class="nav-link">Login</small>
-        </li>
+      
         <li class="nav-item">
           <div class="hover-overlay-container">
             <img class="overlay-image" width="100" src="https://www.motortrend.com/uploads/sites/5/2020/01/Lamborghini-Huracan-Evo-RWD-front-three-quarters.jpg">
@@ -28,12 +40,16 @@
             </div>
           </div>
         </li>
+        <li class></li>
+
         <li class="nav-item">
-          <img src="https://scontent.fesb3-2.fna.fbcdn.net/v/t1.6435-9/168851874_4585041024856286_5945590569367529056_n.jpg?_nc_cat=106&ccb=1-3&_nc_sid=730e14&_nc_ohc=LNiPTiSIxIMAX_mpi1Z&_nc_ht=scontent.fesb3-2.fna&oh=8eefed477b89abb55ec4f29bdea32574&oe=608E3C9C" 
-          width="650" height="40"  alt="">
+          <img  src="https://scontent.fesb3-2.fna.fbcdn.net/v/t1.6435-9/171605443_4534605393233037_3374684536127587091_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=730e14&_nc_ohc=PfznQBznLaAAX_iw2CJ&_nc_ht=scontent.fesb3-2.fna&oh=5212ad325c7868e4a2ffec4cb56c1ee5&oe=60968D2A" 
+          width="650" height="50"  alt="">
         </li>
       </ul>
+      <ul class="navbar-toggler-padding-y">
       <app-users></app-users>
+    </ul>
     </div>
 
   </div>

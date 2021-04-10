@@ -33,16 +33,15 @@ export class LoginComponent implements OnInit {
 
   login(){
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
       let loginModel=Object.assign({},this.loginForm.value)
       this.authService.login(loginModel).subscribe(response=>{
         
         localStorage.setItem("token",response.data.token)
         if (response.success) {
-          this.toastrService.info(response.message,"Conguratulation")
-          localStorage.setItem("username",loginModel.email)  
+          this.toastrService.info("sisteme giriş başarılı","Conguratulation")
+          localStorage.setItem("this","login")
+          this.redirection("")
         }
-          
         },responseError=>{
           this.toastrService.error(responseError.error)
           this.say+=1;
@@ -51,10 +50,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  redirection(where:string){
+    route: ActivatedRouteSnapshot
+    this.router.navigate([where])
+ 
+  }
+
   setLogin(){
     if (this.say>=3)     {
-      route: ActivatedRouteSnapshot
-      this.router.navigate([""])
+      this.redirection("")
     }
     return this.say
   }

@@ -44,7 +44,7 @@ export class AddUserComponent implements OnInit {
         this.toastrService.warning("register mistake")
       })
     }
-    this.toastrService.info("there is a missing area on form")
+   
   }
 
 }

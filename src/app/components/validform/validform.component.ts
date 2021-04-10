@@ -10,6 +10,12 @@ export class ValidformComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  if(localStorage.getItem("this")===null){
+    
+  } else{
+  localStorage.removeItem("this")
+    location.reload() 
+  }
   }
 
 }

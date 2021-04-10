@@ -17,36 +17,36 @@ import { CarInfoDetail } from 'src/app/models/carInfoDetail';
 })
 export class DataManagerComponent implements OnInit {
 
-  cars:Car[];
-  brands:Brand[];
-  colors:Color[];
-  currentCar:Car;
-  dataLoaded=true;
-  imagePath:string;
-  carUpdate:FormGroup;
-  
-  car:CarAdd;
-  carInfoDetail:CarInfoDetail;
+  cars: Car[];
+  brands: Brand[];
+  colors: Color[];
+  currentCar: Car;
+  dataLoaded = true;
+  imagePath: string;
+  carUpdate: FormGroup;
+
+  car: CarAdd;
+  carInfoDetail: CarInfoDetail;
 
   mistakes: string[]
 
-  constructor(private carService:CarService,
-              private brandservice: BrandService,
-              private colorService: ColorService,
-              private toastrService:ToastrService,
-              private formBuilder:FormBuilder) { }
+  constructor(private carService: CarService,
+    private brandservice: BrandService,
+    private colorService: ColorService,
+    private toastrService: ToastrService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-   this.carUpdateElements()
-   this.getCars()
-   this.getColor()
-   this.getBrand()
-   
-     
+    this.carUpdateElements()
+    this.getCars()
+    this.getColor()
+    this.getBrand()
+
+
   }
 
-  OnSubmit(form:any):void{
-    this.mistakes=this.findInvalidControls(this.carUpdate)
+  OnSubmit(form: any): void {
+    this.mistakes = this.findInvalidControls(this.carUpdate)
   }
 
   findInvalidControls(f: FormGroup) {
@@ -60,90 +60,120 @@ export class DataManagerComponent implements OnInit {
     return invalid;
   }
 
-  carUpdateElements(){
-     this.carUpdate=this.formBuilder.group({
-      brandName:["",Validators.required],
-      colorName:["",Validators.required],
-      carName:["",Validators.required],
-      modelYear:["",Validators.required],
-      dailyPrice:["",Validators.required],
-      description:["",Validators.required],
-      manifacturer:["",Validators.required],
-      production:["",Validators.required],
-      assembly:["",Validators.required],
-      designer:["",Validators.required],
-      class:["",Validators.required],
-      bodyStyle:["",Validators.required],
-      engine:["",Validators.required],
-      powerOut:["",Validators.required],
-      transmission:["",Validators.required],
-     })
-  }
-
-  update(){
-    if (this.carUpdate.valid) {
-      
-      let carModel=Object.assign({},this.carUpdate.value);
-      console.log(carModel)
-
-      this.carInfoDetail={Id:this.currentCar.carID,
-                          carID:this.currentCar.carID,
-                          brandID:parseInt(carModel.brandName.split("-",1)),
-                          colorID:parseInt(carModel.colorName.split("-",1)),
-                          manifacturer:carModel.manifacturer,
-                          production:carModel.production,
-                          assembly:carModel.assembly,
-                          designer:carModel.designer,
-                          class:carModel.class,
-                          bodyStyle:carModel.bodyStyle,
-                          engine:carModel.engine,
-                          powerOut:carModel.powerOut,
-                          transmission:carModel.transmission};
-      
-      this.carService.updateInfoCar(this.carInfoDetail).subscribe(
-      response=>{this.toastrService.info("id: "+this.carInfoDetail.Id+"carID: "+this.carInfoDetail.carID+" "+this.carInfoDetail.brandID,"Congratulation")
-          });
-    
-      this.car={carID:this.currentCar.carID,
-            brandID:parseInt(carModel.brandName.split("-",1)),
-            colorID:parseInt(carModel.colorName.split("-",1)),
-            carName:this.currentCar.carName,
-            modelYear:this.currentCar.modelYear,
-            dailyPrice:this.currentCar.dailyPrice,
-            description:this.currentCar.description};
-          
-
-      this.carService.updateCar(this.car).subscribe(
-              response=>{
-                if (response.success) {
-                  this.toastrService.info("Congratulation")
-                  console.log(response.message)  
-                }else{
-                  console.log(console.error())
-                  this.toastrService.info("hassiktir")
-                }
-               
-                });
-         
-    }else{
-      
-      this.toastrService.warning("Eksik alanları doldurunuz ")  
-      
-    }
-    
-  }
-  
-  getCars(){
-    this.carService.getCars().subscribe(response=>{
-      this.cars=response.data
+  carUpdateElements() {
+    this.carUpdate = this.formBuilder.group({
+      brandName: ["", Validators.required],
+      colorName: ["", Validators.required],
+      carName: ["", Validators.required],
+      modelYear: ["", Validators.required],
+      dailyPrice: ["", Validators.required],
+      description: ["", Validators.required],
+      manifacturer: ["", Validators.required],
+      production: ["", Validators.required],
+      assembly: ["", Validators.required],
+      designer: ["", Validators.required],
+      class: ["", Validators.required],
+      bodyStyle: ["", Validators.required],
+      engine: ["", Validators.required],
+      powerOut: ["", Validators.required],
+      transmission: ["", Validators.required],
     })
   }
-  
-  setCurrentCar(car:Car){
-    this.currentCar=car
-    this.imagePath=car.carImage
-    this.dataLoaded=false
-    this.toastrService.info("redirecting to data update page","Hold it:)")
+
+  update() {
+
+    this.getCarInfo();
+    this.carService.updateInfoCar(this.carInfoDetail).subscribe(
+      response => {this.toastrService.info("id: " + this.carInfoDetail.Id + "carID: " + 
+      this.carInfoDetail.carID + " " + this.carInfoDetail.brandID, "Congratulation")});
+
+
+      this.getCar()
+      this.carService.updateCar(this.car).subscribe(
+        response => {
+          if (response.success) {
+            this.toastrService.info("Congratulation")
+            console.log(response.message)
+          } else {
+            console.log(console.error())
+            this.toastrService.info("hata")
+          }
+
+        });
+
+    
+    
+
+    
+  }
+
+  getCarInfo(){
+    
+    if (this.carUpdate.valid) {
+
+      let carModel = Object.assign({}, this.carUpdate.value);
+      console.log(carModel)
+
+      this.carInfoDetail = {
+        Id: this.currentCar.carID,
+        carID: this.currentCar.carID,
+        brandID: parseInt(carModel.brandName.split("-", 1)),
+        colorID: parseInt(carModel.colorName.split("-", 1)),
+        manifacturer: carModel.manifacturer,
+        production: carModel.production,
+        assembly: carModel.assembly,
+        designer: carModel.designer,
+        class: carModel.class,
+        bodyStyle: carModel.bodyStyle,
+        engine: carModel.engine,
+        powerOut: carModel.powerOut,
+        transmission: carModel.transmission
+      };
+    }else{
+
+    }
+
+
+
+  }
+
+  getCar() {
+
+    if (this.carUpdate.valid) {
+
+      let carModel = Object.assign({}, this.carUpdate.value);
+      this.car = {
+        carID: this.currentCar.carID,
+        brandID: parseInt(carModel.brandName.split("-", 1)),
+        colorID: parseInt(carModel.colorName.split("-", 1)),
+        carName: this.currentCar.carName,
+        modelYear: this.currentCar.modelYear,
+        dailyPrice: this.currentCar.dailyPrice,
+        description: this.currentCar.description
+      };
+    } else {
+      this.toastrService.warning("boş alanları doldurunuz");
+    }
+
+
+
+
+  }
+
+
+
+
+  getCars() {
+    this.carService.getCars().subscribe(response => {
+      this.cars = response.data
+    })
+  }
+
+  setCurrentCar(car: Car) {
+    this.currentCar = car
+    this.imagePath = car.carImage
+    this.dataLoaded = false
+    this.toastrService.info("redirecting to data update page", "Hold it:)")
 
 
   }
@@ -159,8 +189,35 @@ export class DataManagerComponent implements OnInit {
       this.colors = response.data
     });
   }
+  saveCarAndInfo() {
 
- 
+    this.getCar();
+    this.car.carID=0;
+    console.log(this.car, this.currentCar, this.carInfoDetail)
+
+    this.carService.add(this.car).subscribe(response => {
+      this.toastrService.info("data added")
+    }, errors => { this.toastrService.info("hata") });
+
+    this.bekle(1500);
+
+    this.getCarInfo();
+    this.carInfoDetail.Id=0;
+    this.carService.saveCarInfo(this.carInfoDetail).subscribe(response => {
+      this.toastrService.info("data added")
+    });
+    this.bekle(1500);
+    location.reload();
+  }
+
+  bekle(bekle:number){
+    function delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+    
+    }
+    delay(bekle)
+  }
+
 }
 
 

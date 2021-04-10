@@ -63,8 +63,9 @@
                     </div>
                     <div class="card-body">
                       <h5 class="card-title">{{car.brandName}}</h5>
+                      <p class="card-text">{{car.carName}}</p>
                       <ul lass="list group">
-                        <p class="card-text">{{car.carName}}</p>
+                        <li class="list-group item"><h5>car findeks: {{car.dailyPrice}}</h5></li>
                         <p class="card-text">{{car.colorName}}</p>
                         <p class="card-text">{{car.modelYear}}</p>
                         <p class="card-text">{{car.dailyPrice | currency : "₺"}}</p>
@@ -88,39 +89,5 @@
     <hr class="my-5">
 
 
-    <body *ngIf="currentCar">
-      <div class="row mb-2">
-        <div class="col col-4">
-          <img src={{imagePath}} width="450" height="260" alt="{{carinfo}}">
-          <dl>
-            <dt>{{currentCar.brandName}} {{currentCar.carName}}" properties"
-            <dd> {{currentCar.brandName}} {{currentCar.carName}} {{currentCar.colorName}} {{currentCar.modelYear}} {{currentCar.description}}
-              {{currentCar.manifacturer}} product by {{currentCar.production}} assembly: {{currentCar.assembly}}
-              design by {{currentCar.designer}} {{currentCar.class}} {{currentCar.bodyStyle}} engine:
-              {{currentCar.engine}}
-              {{currentCar.powerOut}} transmission: {{currentCar.transmission}}
-          </dl>
-        </div>
-        <div class="col col-8">
-
-          <div class="row mb-1">
-            <div class="col col-8"></div>
-            <div class="col col-2"></div>
-            <div class="col col-2">
-              <a (click)="reFresh()" class="navbar-brand">Return car list</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-
-            </div>
-          </div>
-     
-
-          <app-member-ship></app-member-ship>
-          <!-- <app-car-rental></app-car-rental> -->
-        </div>
-      </div>
-
+   
      

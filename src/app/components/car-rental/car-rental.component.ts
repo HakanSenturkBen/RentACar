@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
+
 import { PaymentModel } from 'src/app/models/paymentModel';
 import { Rental } from 'src/app/models/rental';
 import { PaymentService } from 'src/app/services/payment.service';
@@ -22,7 +23,9 @@ export class CarRentalComponent implements OnInit {
   transactionAmount:number;
   rental:Rental;
   paying:boolean=false;
+  currentCar:any
   
+
 
   constructor(private formBuilder:FormBuilder,
     private paymentService:PaymentService,
@@ -32,11 +35,14 @@ export class CarRentalComponent implements OnInit {
 
   ngOnInit(): void {
     this.ode()
+    this.currentCar=localStorage.getItem("rentalCar")
+    this.currentCar=JSON.parse(this.currentCar)
     
-
+  
    
   }
 
+  
   ode(){
     this.rentPayment=this.formBuilder.group({
       rentDate:["",Validators.required],
@@ -51,6 +57,9 @@ export class CarRentalComponent implements OnInit {
 
  
   nextStep(){
+    if (this.rentPayment.valid) {
+      
+    
     let deger=Object.assign({},this.rentPayment.value)
    
     let user:any=localStorage.getItem("username")
@@ -86,6 +95,8 @@ export class CarRentalComponent implements OnInit {
       transactionAmount:this.transactionAmount
     }
     this.paying=true
+   
+  }else this.toastrService.warning("alanları tam doldurunuz")
     
 
     
@@ -99,17 +110,33 @@ export class CarRentalComponent implements OnInit {
       });
 
       this.toastrService.info(response.message,"Congratulations")
-      location.reload()
+      this.dataLoaded=true;
+     
     },error=>{
-      this.toastrService.error("Kart numarası hatalı")
-      if(error.errors.length>0){
-        for (let i = 0; i <error.Errors.length; i++) {
-          this.toastrService.error(error.Errors[i].ErrorMessage
-            ,"Kart numarası hatalı")
-        }       
+      console.log(this.rental, this.payCard)
+      
+      if(error.error.Errors.length>0){
+        for (let i = 0; i <error.error.Errors.length; i++) {
+          this.toastrService.error(error.error.Errors[i].ErrorMessage
+            ,"Kart numarası hatalı") 
+        }      
+      
+            this.bekle(5000)
+        location.reload(); 
       } 
+      
 
     });
+  }
+
+
+
+  bekle(bekle:number){
+    function delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+    
+    }
+    delay(bekle)
   }
 }
 

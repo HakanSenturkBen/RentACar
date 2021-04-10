@@ -38,6 +38,7 @@ export class CarComponent implements OnInit {
   myMap=new Map()
   tarih:Date=new Date();
   adi:string="";
+ 
 
   constructor(private carService:CarService,
               private activateRoute:ActivatedRoute,
@@ -90,8 +91,12 @@ export class CarComponent implements OnInit {
   setCurrentCar(car:Car){
     this.currentCar=car
     localStorage.setItem("rentalCar",JSON.stringify(this.currentCar))
+
     this.imagePath=car.carImage
+    
     this.dataLoaded=false;
+    this.reDirection("/rental")
+  
   }
 
   getCars(){
@@ -138,13 +143,8 @@ export class CarComponent implements OnInit {
   }
 
   checkCarFreeOrNot(car:Car){
-    // this.setCurrentCar(car)
-    // localStorage.setItem("currentcar",JSON.stringify(this.currentCar))
-    // console.log(this.currentCar)
-    if(localStorage.getItem("username")===null){
-      this.reDirection("/memberShip")
-    }
 
+    
     this.rentalService.getRentalByCarId(car.carID).subscribe(response=>{
       this.rental=response.data
       
@@ -157,7 +157,18 @@ export class CarComponent implements OnInit {
           if(checkit==false){
             this.toastrService.warning("was rented. Please choose to another one", car.brandName)
           }else{
-            this.rentalCar(car)
+            if(localStorage.getItem("username")===null){
+              this.reDirection("/memberShip")
+            }
+            let member:any=localStorage.getItem("username")
+            member=JSON.parse(member)
+            let check=parseInt(member.findeksPoint)+400
+            if(check<car.dailyPrice){
+              this.toastrService.error("findeks puanınız yetersiz")
+            }else{
+              this.rentalCar(car)
+            }
+            
         
           }
         

@@ -1,4 +1,24 @@
-<div class="content">
+<div class="container">
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Lütfen Dikkat
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <strong>Pek muhterem admin </strong> Çalışmalarınızda başarılar dilerim
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="contant">
     <div class="row">
         <div class="col-md-4">
             <div class="card">
@@ -9,60 +29,52 @@
                     <form [formGroup]="carAddForm">
                         <div class="mb-2">
                             <div class="form-group">
-                                <select class="form-select form-select-sm" 
-                                        formControlName="brandName"
+                                <select class="form-select form-select-sm" formControlName="brandName"
                                     aria-label="Default select example" id="brandID">
-                                    <option *ngFor="let brand of brands" 
-                                        >{{brand.brandID}} {{brand.brandName}}</option>
+                                    <option *ngFor="let brand of brands">{{brand.brandID}} {{brand.brandName}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="mb-2">
                             <div class="form-group">
-                                <input type="text" id="carName" formControlName="carName"
-                                size="27"
+                                <input type="text" id="carName" formControlName="carName" size="27"
                                     placeholder="car model name" />
                             </div>
                         </div>
-                        
+
                         <div class="mb-2">
                             <div class="form-group">
-                                <select class="form-select form-select-sm" 
-                                        formControlName="colorName"
+                                <select class="form-select form-select-sm" formControlName="colorName"
                                     aria-label="Default select example" id="colorID">
-                                    <option *ngFor="let color of colors" 
-                                        >
+                                    <option *ngFor="let color of colors">
                                         {{color.colorId}} {{color.colorName}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="mb-2">
                             <div class="form-group">
-                                <input type="text" id="modelYear" formControlName="modelYear"
-                                        size="27"
-                                        placeholder="car model year" />
+                                <input type="text" id="modelYear" formControlName="modelYear" size="27"
+                                    placeholder="car model year" />
                             </div>
                         </div>
                         <div class="mb-2">
                             <div class="form-group">
-                                <input type="number" id="dailyPrice" formControlName="dailyPrice"
-                                        size="15"
-                                        placeholder="input daily price please" />
+                                <input type="number" id="dailyPrice" formControlName="dailyPrice" size="15"
+                                    placeholder="input daily price please" />
                             </div>
                         </div>
 
                         <div class="mb-2">
                             <div class="form-group">
-                                <input type="text" id="description" formControlName="description"
-                                        size="27"
-                                        placeholder="car description" />
+                                <input type="text" id="description" formControlName="description" size="27"
+                                    placeholder="car description" />
                             </div>
                         </div>
                     </form>
                 </div>
                 <button class="btn btn-outline-primary" (click)="add()"> Add </button>
                 <button routerLink="/update" class="btn btn-outline-primary">Update</button>
-                
+
 
 
 

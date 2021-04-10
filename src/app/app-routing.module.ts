@@ -15,17 +15,16 @@ import { MemberShipComponent } from './components/member-ship/member-ship.compon
 
 const routes: Routes = [
   {path:"",pathMatch:"full",component:ValidformComponent},
-  {path:"datamanager",component:DataManagerComponent},
+  {path:"datamanager",component:DataManagerComponent, canActivate: [LoginGuard]},
   { path: "login", component: LoginComponent },
   {path:"cars",component:CarComponent},
   {path:"Cars/brand/:brandID",component:CarComponent},
   {path:"Cars/color/:colorId",component:CarComponent},
-  { path: "cars/add", component: CarAddUpdDelComponent, canActivate: [LoginGuard] },
-  {path:"cars/add",component:CarAddUpdDelComponent},
-  {path:"colors/add",component:ColorAddUpdDelComponent},
-  {path:"brands/add",component:BrandAddUpdDelComponent},
-  {path:"update",component:UpdateCarComponent},
-  {path:"users",component:AddUserComponent},
+  {path: "cars/add", component: CarAddUpdDelComponent, canActivate: [LoginGuard] },
+  {path:"colors/add",component:ColorAddUpdDelComponent, canActivate: [LoginGuard] },
+  {path:"brands/add",component:BrandAddUpdDelComponent, canActivate: [LoginGuard] },
+  {path:"update",component:UpdateCarComponent, canActivate: [LoginGuard] },
+  {path:"users",component:AddUserComponent, canActivate: [LoginGuard] },
   {path:"rental",component:CarRentalComponent},
   {path:"memberShip",component:MemberShipComponent}
 ];

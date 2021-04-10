@@ -65,7 +65,7 @@ export class UsersComponent implements OnInit {
     let userModel=JSON.parse(this.username)
     this.username=userModel.firstName+" "+userModel.lastName
     this.login=true
-    this.toastrService.info("welcome dear " +userModel.firstName+" "+ userModel.lastName)
+   
     
     
   }
@@ -82,14 +82,16 @@ export class UsersComponent implements OnInit {
         
         if (res.data==null) {
           
-          this.mistake(userModel.email+"user not found")
+          this.mistake(userModel.email+" user not found")
+        }else if(userModel.password!=this.currentUser.password){
+          this.mistake(userModel.email+" password invalid")
         }else{
           this.storageLokal.loadObject("username",this.currentUser)
           this.username=userModel.firstName+" "+userModel.lastName
           location.reload();
           this.login=true;
           console.log(userModel)
-          this.toastrService.info(userModel.email+" "+res.message+"login successfull")
+          this.toastrService.info(userModel.email+" "+res.message+" login successfull")
         }
     });
     }else{
@@ -104,8 +106,9 @@ export class UsersComponent implements OnInit {
     if (this.entriesCount>3){ 
       this.login=false
       this.username=""
-      if(location.pathname!="/users")this.reDirection("users")
       this.entriesCount=0
+      if(location.pathname!="/users")this.reDirection("memberShip")
+      
       
     }
 

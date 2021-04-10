@@ -25,7 +25,8 @@
                     <td>{{car.dailyPrice | currency : "₺"}}</td>
                     <td>{{car.description}} </td>
                     <td>{{car.manifacturer}}</td>
-                    <td><button (click)="setCurrentCar(car)" type="button" class="btn btn-success btn-xs">upd/del</button></td>
+                    <td><button (click)="setCurrentCar(car)" type="button"
+                            class="btn btn-success btn-xs">upd/del</button></td>
 
                 </tr>
             </tbody>
@@ -33,30 +34,32 @@
     </body>
 
     <body *ngIf="currentCar">
+
         <body class="bg-light">
             <div class="container">
                 <main>
                     <div class="row">
                         <div class="col-lg-5">
                             <div class="py-5 text-center">
-                                
+
                                 <div class="hover-overlay-container">
                                     <ul class="list-group mb-3">
-                                        
+
                                         <img class="overlay-image" src="{{imagePath}}">
-                                    <small class="text-muted">Full name as displayed on card</small>
-                                    
-                                    <div class="overlay-btn-container">
-                                        <button href="#" class="w-100 btn btn-primary btn-lg">Change picture</button>
-                                       
-                                    </div>
+                                        <small class="text-muted">Full name as displayed on card</small>
+
+                                        <div class="overlay-btn-container">
+                                            <button href="#" class="w-100 btn btn-primary btn-lg">Change
+                                                picture</button>
+
+                                        </div>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-5 col-lg-6 order-md-last">
-                           
-                            <ul class="list-group mb-2" >
+
+                            <ul class="list-group mb-2">
                                 <li class="list-group-item d-flex justify-content-between lh-sm">
                                     <div>
                                         <h6 class="my-2">{{currentCar.brandName}} {{currentCar.carName }}</h6>
@@ -216,15 +219,18 @@
 
                                 </div>
                                 <h6></h6>
-                                <button routerLink="datamanager" (click)="update()" class="w-100 btn btn-primary btn-lg"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="kayıt tuşu"
-                                    type="submit">DATA UPDATE</button>
+                                <button (click)="update()" class="w-100 btn btn-primary btn-lg" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="kayıt tuşu" type="submit">DATA UPDATE</button>
+                                    <hr>
+
+                                <button (click)="saveCarAndInfo()" class="w-100 btn btn-primary btn-lg" data-bs-toggle="tooltip"
+                                    data-bs-placement="top" title="kayıt tuşu" type="submit">Save car by this info</button>
                             </form>
                         </div>
                     </div>
                 </main>
 
-               
+
                 <footer class="my-5 pt-5 text-muted text-center text-small">
                     <p class="mb-1">&copy; 2017–2021 Company Name</p>
                     <ul class="list-inline">
@@ -234,4 +240,3 @@
                     </ul>
                 </footer>
             </div>
-            
