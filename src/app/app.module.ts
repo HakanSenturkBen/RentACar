@@ -32,9 +32,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import {LocalStorageModule} from 'angular-2-local-storage';
 import { MemberShipComponent } from './components/member-ship/member-ship.component'
 import { ɵEmptyOutletComponent } from '@angular/router';
-import { DialogBoxComponent } from './dialog-box/dialog-box.component';
-import { DiologBoxComponent } from './components/diolog-box/diolog-box.component';
-
 
 
 import {MatDialogModule} from '@angular/material/dialog';
@@ -64,8 +61,6 @@ import {MatDialogModule} from '@angular/material/dialog';
     UsersComponent,
     ValidformComponent,
     MemberShipComponent,
-    DialogBoxComponent,
-    DiologBoxComponent,
     
   ],
 

@@ -55,7 +55,7 @@
           <div class="row gy-3">
             <div class="col-md-6">
               <label for="cc-name" class="form-label">Starting Date</label>
-              <input type="date" class="form-control" id="cc-name" placeholder="xx.xx.xx" formControlName="rentDate"
+              <input type="date" class="form-control" id="cc-name" placeholder="" formControlName="rentDate"
                 required>
               <small class="text-muted">Full name as displayed on card</small>
               <div class="invalid-feedback">
@@ -169,15 +169,13 @@
           <div class="col col-3">
             <hr class="my-3">
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button (click)="PayAndExit()" type="w-100 btn btn-primary btn-lg" class="btn btn-primary"> Pay and
-                Finished </button>
+              <button (click)="yesAdd()" type="w-100 btn btn-primary btn-lg" class="btn btn-primary">Yes Add</button>
             </div>
           </div>
           <div class="col col-3">
             <hr class="my-3">
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button (click)="PayAndExit()" type="w-100 btn btn-primary btn-lg" class="btn btn-primary"> Pay and
-                Finished </button>
+              <button routerLink="" type="w-100 btn btn-primary btn-lg" class="btn btn-primary"> No escape please</button>
             </div>
           </div>
         </div>

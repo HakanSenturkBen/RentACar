@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { RentalService } from 'src/app/services/rental.service';
 import { Rental } from 'src/app/models/rental';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
+
 
 
 @Component({
@@ -64,22 +64,7 @@ export class CarComponent implements OnInit {
       
     })
   }
-
-  
-  openDialog():void{
-    const dialogRef = this.dialog.open(DialogBoxComponent,{
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
-
-
-
+ 
   
 
   bugun():string{

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { PaymentModel } from 'src/app/models/paymentModel';
 import { Rental } from 'src/app/models/rental';
+import { CustomerService } from 'src/app/services/customer.service';
 import { PaymentService } from 'src/app/services/payment.service';
 import { RentalService } from 'src/app/services/rental.service';
 
@@ -30,7 +31,8 @@ export class CarRentalComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private paymentService:PaymentService,
     private toastrService:ToastrService,
-    private rentalService:RentalService) { }
+    private rentalService:RentalService,
+    private customerService:CustomerService) { }
 
 
   ngOnInit(): void {
@@ -113,30 +115,31 @@ export class CarRentalComponent implements OnInit {
       this.dataLoaded=true;
      
     },error=>{
-      console.log(this.rental, this.payCard)
-      
+      this.toastrService.error("Kart numarası hatalı","",{progressBar:true,timeOut:12000})
+     
       if(error.error.Errors.length>0){
         for (let i = 0; i <error.error.Errors.length; i++) {
           this.toastrService.error(error.error.Errors[i].ErrorMessage
-            ,"Kart numarası hatalı") 
+            ,"Kart numarası hatalı",{progressBar:true, timeOut:15000})
         }      
-      
-            this.bekle(5000)
-        location.reload(); 
+            location.reload();
+             
       } 
       
-
     });
   }
 
+  yesAdd(){
 
-
-  bekle(bekle:number){
-    function delay(ms: number) {
-      return new Promise( resolve => setTimeout(resolve, ms) );
-    
-    }
-    delay(bekle)
+    let yeni:any=localStorage.getItem("username");
+    yeni=JSON.parse(yeni);
+    yeni.creditCard=this.payCard.creditCardNumber;
+    this.customerService.update(yeni).subscribe(res=>{
+      this.toastrService.info("bilgileriniz güncellendi")
+    });
   }
+
+  
+  
 }
 

@@ -3,8 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/services/customer.service';
 import { MatDialog, MatDialogConfig} from '@angular/material/dialog'
-import { ɵEmptyOutletComponent } from '@angular/router';
-import { AppComponent } from 'src/app/app.component';
 
 
 
@@ -55,7 +53,7 @@ export class MemberShipComponent implements OnInit {
       password: ["", Validators.required],
       address: ["", Validators.required],
       findeksPoint: ["", Validators.required],
-      creditCart: ["", Validators.required]
+      creditCard: ["", Validators.required]
     });
 
 
@@ -77,7 +75,6 @@ export class MemberShipComponent implements OnInit {
 
   }
 
-
 elemetsOfModal() {
   this.modalGroup = this.formBuilder.group({
     not1: ["", Validators.required],
@@ -95,9 +92,6 @@ elemetsOfModal() {
 findeksPointing() {
   if (this.modalGroup.valid) {
    
-
-
-
     this.puan = 0
     if (this.modalGroup.value.not1 == "Evet") {
       this.puan += 650
@@ -112,19 +106,19 @@ findeksPointing() {
       this.puan += 200
     }
     if (this.modalGroup.value.not5 == "Evet") {
-      this.puan += 36
+      this.puan += 40
     }
     if (this.modalGroup.value.not6 == "Evet") {
-      this.puan += 36
+      this.puan += 40
     }
     if (this.modalGroup.value.not7 == "Evet") {
-      this.puan += 36
+      this.puan += 40
     }
     if (this.modalGroup.value.not8 == "Evet") {
-      this.puan += 36
+      this.puan += 40
     }
     if (this.modalGroup.value.not9 == "Evet") {
-      this.puan += 36
+      this.puan += 40
     }
 
   } else this.toastrService.info("boşlukları doldur");
@@ -140,16 +134,20 @@ login(){
   this.customer=JSON.parse(username)
   this.puan=this.customer.findeksPoint
   this.logout=false;}
+ 
   }
 
   onDialog(){ 
+    let element=this.memberShip.value;
+    let id:any=localStorage.getItem("username");
+    id=JSON.parse(id); 
+    var yeni=Object.assign({},id,element);
+    this.customerService.update(yeni).subscribe(res=>{
+      this.toastrService.info("bilgileriniz güncellendi")
+    },error=>{this.toastrService.previousToastMessage});
     
-    const dialogConfig=new MatDialogConfig();
-    dialogConfig.disableClose=true;
-    dialogConfig.autoFocus=true;
-    dialogConfig.width="60%";
+   
 
-    // this.dialog.open(MemberShipComponent)
 
   }
 

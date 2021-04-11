@@ -22,5 +22,8 @@ export class CustomerService {
   add(customer:CustomerModel):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiUrl1+"add",customer);
   }
+  update(customer:any):Observable<ResponseModel>{
+    return this.httpClient.post<ResponseModel>(this.apiUrl1+"update",customer)
+  }
 
 }
