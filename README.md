@@ -1,3 +1,6 @@
+
+MyLinkdln:
+https://www.linkedin.com/in/hakan-%C5%9Fent%C3%BCrk-74338b19a/?lipi=urn%3Ali%3Apage%3Ad_flagship3_feed%3BxZ5GpV1PQV%2BqUgFkSGIgfg%3D%3D
 # RentACar
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
