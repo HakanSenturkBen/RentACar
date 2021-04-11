@@ -10,19 +10,10 @@ export class AppComponent {
   greenColor = 'green';
   redColor = 'red';
 
-  validaty:boolean=validity();
   
 }
 
 
 
-function validity() {
-  let route=localStorage.getItem("route")
-  if (route=="cars") {
-    return true
-  }
-  return false
 
-  
-}
 

@@ -24,11 +24,13 @@
     "angular-2-local-storage": "^3.0.2",
     "bootstrap": "^5.0.0-beta2",
     "bootstrap-icons": "^1.4.1",
+    "email-validator": "^2.0.4",
     "jquery": "^3.6.0",
     "ngx-bootstrap": "^6.2.0",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "universal-validator": "^1.0.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {

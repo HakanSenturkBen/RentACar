@@ -36,6 +36,7 @@ import { ɵEmptyOutletComponent } from '@angular/router';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import { RentalDirective } from './directives/rental.directive';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { RentalDirective } from './directives/rental.directive';
     ValidformComponent,
     MemberShipComponent,
     RentalDirective,
+    RegistrationFormComponent,
     
   ],
 
