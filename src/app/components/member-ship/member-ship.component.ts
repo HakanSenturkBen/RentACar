@@ -31,6 +31,7 @@ export class MemberShipComponent implements OnInit {
     this.elemetsOfModal()
     this.elementsOfMember()
     this.login()
+    
 
     
 
@@ -143,7 +144,7 @@ login(){
     id=JSON.parse(id); 
     var yeni=Object.assign({},id,element);
     this.customerService.update(yeni).subscribe(res=>{
-      this.toastrService.info("bilgileriniz güncellendi")
+      this.toastrService.info("bilgileriniz güncellendi","",{progressBar:true,positionClass:'toast-center-center'})
     },error=>{this.toastrService.previousToastMessage});
     
    

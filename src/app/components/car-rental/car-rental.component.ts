@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 
@@ -32,17 +33,26 @@ export class CarRentalComponent implements OnInit {
     private paymentService:PaymentService,
     private toastrService:ToastrService,
     private rentalService:RentalService,
-    private customerService:CustomerService) { }
+    private customerService:CustomerService,
+    private router:Router) { }
 
 
   ngOnInit(): void {
     this.ode()
     this.currentCar=localStorage.getItem("rentalCar")
     this.currentCar=JSON.parse(this.currentCar)
+    this.toastrService.info("bilgileriniz güncellendi","",{progressBar:true,positionClass:'toast-top-center'})
     
   
    
   }
+
+  reDirection(where:string){
+    this.toastrService.info("redirection to "+where+" service")
+    route: ActivatedRouteSnapshot
+    this.router.navigate([where])
+  }
+
 
   
   ode(){
@@ -136,6 +146,7 @@ export class CarRentalComponent implements OnInit {
     yeni.creditCard=this.payCard.creditCardNumber;
     this.customerService.update(yeni).subscribe(res=>{
       this.toastrService.info("bilgileriniz güncellendi")
+      this.reDirection("")
     });
   }
 
