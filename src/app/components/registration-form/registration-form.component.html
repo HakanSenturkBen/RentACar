@@ -1,125 +1,98 @@
-<div class="registration-page-wrapper">
-	<form class="registration-form" autocomplete="off"
-		*ngIf="registrationForm"
-		[formGroup]="registrationForm"
-		(ngSubmit)="submitRegistrationForm()">
+<div class="container" name="registration-form">
+  <div class="registration-page-wrapper">
+    <form
+      class="registration-form"
+      autocomplete="off"
+      *ngIf="registrationForm"
+      [formGroup]="registrationForm"
+      (ngSubmit)="submitRegistrationForm()"
+    >
+      <h1>Register:</h1>
+      <app-input
+        [parentForm]="registrationForm"
+        label="Name : "
+        fieldName="name"
+        formControlName="name"
+      >
+      </app-input>
 
-		<h1>
-			Register:
-		</h1>
+      <app-input
+        [parentForm]="registrationForm"
+        fieldName="email"
+        label="Email : "
+        formControlName="email"
+      >
+      </app-input>
+      <app-password-imput
+      [parentForm]="registrationForm"
+        label="Password : "
+        fieldName="password"
+        formControlName="password">
 
-		<div class="form-row">
-			<label class="form-label" for="name">
-				<span class="is-required">
-					Name
-				</span>
-				<span class="field-error"
-					*ngIf="nameField?.hasError( 'required' )
-						&& nameField?.dirty">
-					This is a required field.
-				</span>
-				<span class="field-error"
-					*ngIf="nameField?.hasError( 'noEmptyString' )
-						&& nameField?.dirty">
-					Please enter a valid name.
-				</span>
-			</label>
-			<input class="form-element" type="text" name="name" id="name"
-		        [ngClass]="{
-		            'has-error':
-		                nameField?.invalid
-		                && nameField?.dirty
-		        }"
-				formControlName="name">
-		</div>
+      </app-password-imput> 
+      
 
-		<div class="form-row">
-			<label class="form-label" for="email">
-				<span class="is-required">
-					Email
-				</span>
-				<span class="field-error"
-					*ngIf="emailField?.hasError( 'required' )
-						&& emailField?.dirty">
-					This is a required field.
-				</span>
-				<span class="field-error"
-					*ngIf="emailField?.hasError( 'normalEmailRule' )
-						&& emailField?.dirty">
-					Email format is invalid.
-				</span>
-			</label>
-			<input class="form-element" type="text" name="email" id="email"
-				[ngClass]="{
-		            'has-error':
-		                emailField?.invalid
-		                && emailField?.dirty
-		        }"
-				formControlName="email">
-		</div>
+      <!-- <div class="form-row">
+        <label class="form-label" for="email">
+          <span class="is-required"> Email </span>
+          <span
+            class="field-error"
+            *ngIf="emailField?.hasError('required') && emailField?.dirty"
+          >
+            This is a required field.
+          </span>
+          
+        </label>
+        <input
+          class="form-element"
+          type="text"
+          name="email"
+          id="email"
+          [ngClass]="{
+            'has-error': emailField?.invalid && emailField?.dirty
+          }"
+          formControlName="email"
+        />
+      </div> -->
 
-		<div class="form-row">
-			<label class="form-label" for="password">
-				<span class="is-required">
-					Password
-				</span>
-				<span class="field-error"
-					*ngIf="passwordField?.hasError( 'required' )
-						&& passwordField?.dirty">
-					This is a required field.
-				</span>
-				<span class="field-error"
-					*ngIf="passwordField?.hasError( 'noWhitespaceRequired' )
-						&& passwordField?.dirty">
-					No spaces allowed.
-				</span>
-			</label>
-			<div class="input-with-button-wrapper">
-				<input class="form-element" name="password" id="password"
-					[ngClass]="{
-						'has-error':
-							passwordField?.invalid
-							&& passwordField?.dirty
-					}"
-					[type]="passwordFieldType"
-					formControlName="password">
+      
 
-				<button type="button" class="toggle-password-visibility-button"
-			        [title]="passwordFieldType === 'text'
-						? 'Hide password'
-						: 'Show password'"
-					(click)="togglePasswordVisible()">
-					
-				</button>
-			</div>
-		</div>
+      <div class="form-row">
+        <label class="form-label" for="favouriteHexCode">
+          <span> Favourite hex colour </span>
+        </label>
 
-		<div class="form-row">
-			<label class="form-label" for="favouriteHexCode">
-				<span>
-					Favourite hex colour
-				</span>
-			</label>
+        <div class="input-with-button-wrapper">
+          <input
+            class="form-element"
+            type="text"
+            name="favouriteHexCode"
+            id="favouriteHexCode"
+            maxlength="7"
+            formControlName="favouriteHexCode"
+          />
 
-			<div class="input-with-button-wrapper">
-				<input class="form-element" type="text" name="favouriteHexCode" id="favouriteHexCode" maxlength="7"
-			        formControlName="favouriteHexCode">
+          <div
+            class="hex-colour-display"
+            [ngStyle]="{
+              background:
+                favouriteHexCodeValue !== ''
+                  ? favouriteHexCodeValue
+                  : 'transparent'
+            }"
+          ></div>
+        </div>
+      </div>
 
-				<div class="hex-colour-display"
-					[ngStyle]="{
-						background: favouriteHexCodeValue !== ''
-							? favouriteHexCodeValue
-							: 'transparent'
-					}">
-				</div>
-			</div>
-		</div>
-
-		<div class="button-row">
-			<button class="button-success" type="submit"
-		        [disabled]="registrationForm?.invalid">
-				Submit
-			</button>
-		</div>
-	</form>
+      <div class="button-row">
+        <button
+          class="button-success"
+          type="submit"
+          [disabled]="registrationForm?.invalid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

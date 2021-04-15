@@ -1,0 +1,122 @@
+
+.registration-form{
+  background: #fff;
+  width:55 rem;
+  max-width: 100%;
+  padding:2rem;
+  border: 2px solid #e6c6c6;
+  margin:auto;
+  box-shadow: 8 4px 8px rgba(#888,8.3);
+
+}
+h1 {
+  margin-top:8;
+  font-weight:288;
+
+}
+
+.input-with-button-wrapper{
+  position:relative;
+}
+  .form-elelemt{
+    
+    padding-right:2.75rem;
+  }
+
+
+
+
+.hex-color-display{
+  width: 2.25rem;
+  border-left: 1px solid #c9c9c9;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  bottom: 2px;
+}
+
+  .registration-form{
+    width: 400px;
+    height: max-content;
+    
+  }
+ 
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  label{
+    color: rgb(95, 63, 41);
+    font-style: italic;
+    font-weight:normal;
+    font-size: 15px;
+    
+  }
+  
+  p{
+    color: rgb(255, 255, 255);
+    
+    font-weight:lighter ;
+  }
+  
+  .container{
+    max-width: 800px;
+  }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  label{
+    color: rgb(95, 63, 41);
+    font-style: italic;
+    font-weight:normal;
+    font-size: 15px;
+    
+  }
+  
+  p{
+    color: rgb(255, 255, 255);
+    
+    font-weight:lighter ;
+  }
+  
+  
+  .hover-overlay-container .overlay-btn-container .overlay-btn {
+  color: rgb(253, 249, 249);
+  font-size: 16px;
+  padding: 10px 16px;
+  background-color: rgb(139, 29, 21);
+  text-decoration: none;
+  }
+  
+  form {
+    font: 1em sans-serif;
+    max-width: 1420px;
+  }
+  
+  p > label {
+    display: block;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  textarea,
+  fieldset {
+    width : 100%;
+    border: 1px solid #333;
+    box-sizing: border-box;
+  }
+  
+  input:invalid {
+    box-shadow: 0 0 5px 1px rgb(195, 0, 255);
+    text-underline-position:auto rgb(92, 16, 16);
+  }

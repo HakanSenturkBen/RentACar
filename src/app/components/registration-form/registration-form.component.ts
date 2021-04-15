@@ -11,14 +11,8 @@ export class RegistrationFormComponent implements OnInit {
 
   
   public registrationForm:FormGroup;
-  public passwordFieldType:string='password';
-  get nameField():FormControl{
-    return this.registrationForm.get('name') as FormControl;
-  }
-
-  get emailField():FormControl{
-    return this.registrationForm.get('email') as FormControl;
-  }
+ 
+ 
 
   get passwordField():FormControl{
     return this.registrationForm.get('password') as FormControl;
@@ -40,14 +34,14 @@ export class RegistrationFormComponent implements OnInit {
 		this.registrationForm =
 			new FormGroup( {
 				name: new FormControl(
-					'',
+					'Hakan',
 					{
-						validators: [Validators.required,	]}),
+						validators: [Validators.required]}),
 
-				email: new FormControl('',{validators: [Validators.required,]}),
+				email: new FormControl('Hakan@hotmail.com',{validators: [Validators.required,]}),
 
-				password: new FormControl('',{validators: [Validators.required]}),
-				favouriteHexCode: new FormControl( '' )
+				password: new FormControl('password',{validators: [Validators.required]}),
+				favouriteHexCode: new FormControl( '#efefef' )
 			});
 	}
 
@@ -62,12 +56,7 @@ export class RegistrationFormComponent implements OnInit {
 		}
 	}
 
-	public togglePasswordVisible (): void {
-		this.passwordFieldType =
-			this.passwordFieldType === 'text'
-				? 'password'
-				: 'text';
-	}
+	
 
 
 

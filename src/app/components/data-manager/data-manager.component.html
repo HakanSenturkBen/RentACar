@@ -105,22 +105,25 @@
                             <div class="py-5 text-center">
                                 <h4 class="mb-3">car data recording</h4>
                             </div>
-                            <form [formGroup]="carUpdate" class="needs-validation" novalidate>
+
+                            <Form action="" [formGroup]="carUpdate" class="needs-validation" >
                                 <div class="row g-2">
 
                                     <div class="col-sm-3">
                                         <label for="brands" class="form-label">brands:{{currentCar.brandName}}</label>
-                                        <select formControlName="brandName" class="form-select" id="brands" required
+                                        <select formControlName="brandName" class="form-control" id="brands" required
                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                             title="seçim yapmazsan küserim">
                                             <option selected>{{currentCar.brandName}}</option>
                                             <option *ngFor="let brand of brands">{{brand.brandID}}-{{brand.brandName}}
                                             </option>
-
                                         </select>
-
+                                        <div class="invalid-feedback">
+                                            Name on card is required
+                                          </div>
 
                                     </div>
+                                    
 
                                     <div class="col-sm-3">
                                         <label for="colors" class="form-label">Colors:{{currentCar.colorName}}</label>
@@ -219,13 +222,14 @@
 
                                 </div>
                                 <h6></h6>
-                                <button (click)="update()" class="w-100 btn btn-primary btn-lg" data-bs-toggle="tooltip"
-                                    data-bs-placement="top" title="kayıt tuşu" type="submit">DATA UPDATE</button>
+                                
+                                <button (click)="update()" class="w-100 btn btn-primary btn-lg" data-bs-toggle="tooltip" role="group"
+                                    data-bs-placement="top" title="kayıt tuşu" type="w-100 btn btn-primary btn-lg">DATA UPDATE</button>
                                     <hr>
 
                                 <button (click)="saveCarAndInfo()" class="w-100 btn btn-primary btn-lg" data-bs-toggle="tooltip"
                                     data-bs-placement="top" title="kayıt tuşu" type="submit">Save car by this info</button>
-                            </form>
+                            </Form>
                         </div>
                     </div>
                 </main>

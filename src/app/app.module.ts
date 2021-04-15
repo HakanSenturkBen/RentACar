@@ -32,11 +32,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import {LocalStorageModule} from 'angular-2-local-storage';
 import { MemberShipComponent } from './components/member-ship/member-ship.component'
 import { ɵEmptyOutletComponent } from '@angular/router';
-
+import { InputComponent } from 'src/app/shared/formElements/input/input.component';
 
 import {MatDialogModule} from '@angular/material/dialog';
 import { RentalDirective } from './directives/rental.directive';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { FieldErrorsComponent } from './shared/formElements/field-errors/field-errors.component';
+import { PasswordImputComponent } from './shared/formElements/password-imput/password-imput.component';
 
 
 @NgModule({
@@ -65,6 +67,9 @@ import { RegistrationFormComponent } from './components/registration-form/regist
     MemberShipComponent,
     RentalDirective,
     RegistrationFormComponent,
+    InputComponent,
+    FieldErrorsComponent,
+    PasswordImputComponent
     
   ],
 
