@@ -27,6 +27,8 @@ export class CarRentalComponent implements OnInit {
   rental: Rental;
   paying: boolean = false;
   currentCar: any
+  hatalar:string;
+  
 
 
   constructor(private formBuilder: FormBuilder,
@@ -78,6 +80,22 @@ export class CarRentalComponent implements OnInit {
       var turnd = Date.parse(this.rentPayment.value.returnDate);
       var rentd = Date.parse(this.rentPayment.value.rentDate);
       var result = (turnd - rentd) / 1000;
+      var gun:any=new Date;
+      var ben=gun.getFullYear()+"-"+(gun.getMonth()+1)+"-"+gun.getDate();
+      let sonuc=Date.parse(ben)
+      let bir=rentd.toString().substring(0,5);
+      let iki=sonuc.toString().substring(0,5);
+      let test:boolean=true;
+      
+
+
+      
+      console.log(bir,iki,test);
+      
+      
+        
+      
+      
 
       let car: any = localStorage.getItem("rentalCar")
       car = JSON.parse(car)
@@ -104,7 +122,16 @@ export class CarRentalComponent implements OnInit {
         creditCardNumber: deger.creditCard,
         transactionAmount: this.transactionAmount
       }
-      this.paying = true
+
+      if (iki>bir||iki==bir) {
+        this.hatalar="başlangıç tarihi geçmişe dönük olamaz";
+      
+      }else{
+        this.hatalar="";
+        this.paying = true
+
+      }
+      
       
 
     } else this.toastrService.warning("alanları tam doldurunuz")
